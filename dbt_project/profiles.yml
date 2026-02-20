@@ -1,7 +1,7 @@
-my_project:
+proj:              
   target: dev
   outputs:
     dev:
       type: sqlite
       threads: 1
-      database: ":memory:"  # in-memory SQLite, no DB needed
+      database: ":memory:"
