@@ -25,4 +25,4 @@ jobs:
 
       - name: Compile SQL
         run: |
-          dbt compile
+          dbt compile --no-profile
