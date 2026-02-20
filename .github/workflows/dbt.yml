@@ -21,9 +21,9 @@ jobs:
       - name: Install DBT
         run: |
           python -m pip install --upgrade pip
-          pip install dbt-core
+          pip install dbt-postgres
 
-      - name: Create DBT profile
+      - name: Create dummy DBT profile
         run: |
           mkdir -p ~/.dbt
           cat <<EOF > ~/.dbt/profiles.yml
@@ -38,7 +38,10 @@ jobs:
                 dbname: fake
                 schema: public
                 port: 5432
-          EOF    
+          EOF
+
       - name: Compile SQL
-        run: |
-          dbt compile 
+        run: dbt compile
+
+      - name: Show compiled SQL
+        run: cat target/compiled/etl/models/example_data.sql
