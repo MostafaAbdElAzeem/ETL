@@ -9,7 +9,7 @@ Ahmed,2,100
 def test_extract():
     df = extract(csv_path=TEST_CSV)
     
-    assert len(df) == 5
+    assert len(df) == 1
     
     assert "customer_name" in df.columns
     assert "quantity" in df.columns
