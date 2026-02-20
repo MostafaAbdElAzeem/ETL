@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: my_table
+    description: "A simple table for testing"
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        tests:
+          - not_null
