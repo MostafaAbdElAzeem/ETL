@@ -5,3 +5,4 @@ dummy_profile:
       type: sqlite
       threads: 1
       database: ":memory:"
+      schema: main   # required for DBT
