@@ -6,4 +6,4 @@ dummy_profile:
       threads: 1
       database: ":memory:"
       schemas_and_paths:
-        main: []   # can be empty list, works for ephemeral models
+        main: models   # points to your models folder
