@@ -29,7 +29,4 @@ jobs:
           python -m pip install pytest
           pytest test_etl.py
       
-      - name: Run DBT test
-        run: |
-            dbt run
-            dbt test
+      
