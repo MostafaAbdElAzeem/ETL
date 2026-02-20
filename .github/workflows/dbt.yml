@@ -27,13 +27,13 @@ jobs:
         run: |
           mkdir -p ~/.dbt
           cat <<EOF > ~/.dbt/profiles.yml
-dummy_profile:
-  target: dev
-  outputs:
-    dev:
-      type: sqlite
-      threads: 1
-      database: ":memory:" 
+        dummy_profile:
+        target: dev
+        outputs:
+            dev:
+            type: sqlite
+            threads: 1
+            database: ":memory:"  
        EOF
 
       - name: Compile DBT models
