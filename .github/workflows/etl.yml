@@ -23,5 +23,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: mostafazima11/app:latest
+          tags: mostafazima11/etl:latest
           
