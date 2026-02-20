@@ -5,5 +5,6 @@ proj:
       type: sqlite
       threads: 1
       database: ":memory:"
-      schemas_and_paths:
-        main: "models"  
+      schema: main               # REQUIRED by dbt
+      schemas_and_paths:         # REQUIRED by dbt 1.11+
+        main: "models"        # maps the "models" folder to "main" schema
