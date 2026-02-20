@@ -2,26 +2,31 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine
 
-# Read environment variables (with defaults)
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "5432")
-DB_NAME = os.getenv("DB_NAME", "mydb")
-DB_USER = os.getenv("DB_USER", "user")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
+def extract(csv_path=None):
+    csv_path = csv_path or os.getenv("CSV_FILE_PATH", "sales_data.csv")
+    return pd.read_csv(csv_path)
 
-# Extract
-data = pd.read_csv(os.getenv("CSV_FILE_PATH", "sales_data.csv"))
+def transform(df):
+    df = df.copy()
+    df.drop_duplicates(inplace=True)
+    df["total_price"] = df["quantity"] * df["unit_price"]
+    df.fillna({"customer_name": "Unknown"}, inplace=True)
+    return df
 
-# Transform
-data.drop_duplicates(inplace=True)
-data["total_price"] = data["quantity"] * data["unit_price"]
-data.fillna({"customer_name": "Unknown"}, inplace=True)
+def load(df, engine_url=None):
+    engine_url = engine_url or (
+        f"postgresql+psycopg2://{os.getenv('DB_USER','user')}:"
+        f"{os.getenv('DB_PASSWORD','password')}@"
+        f"{os.getenv('DB_HOST','localhost')}:"
+        f"{os.getenv('DB_PORT','5432')}/"
+        f"{os.getenv('DB_NAME','mydb')}"
+    )
+    engine = create_engine(engine_url)
+    df.to_sql("sales", engine, if_exists="replace", index=False)
+    return engine
 
-# Load
-engine = create_engine(
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-)
-
-data.to_sql("sales", engine, if_exists="replace", index=False)
-
-print("ETL process completed successfully!")
+if __name__ == "__main__":
+    data = extract()
+    data = transform(data)
+    load(data)
+    print("ETL process completed successfully!")
