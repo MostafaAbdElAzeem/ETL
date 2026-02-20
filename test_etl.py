@@ -11,9 +11,6 @@ def test_extract():
     
     assert len(df) == 1
     
-    assert "customer_name" in df.columns
-    assert "quantity" in df.columns
-    assert "unit_price" in df.columns
     
     assert df.iloc[0]["customer_name"] == "Ahmed"
     assert df.iloc[0]["quantity"] == 2
