@@ -23,12 +23,6 @@ jobs:
           pip install pandas sqlalchemy psycopg2-binary
           pip install dbt-core dbt-sqlite
 
-      - name: Run dbt
-        working-directory: dbt_project
-        run: |
-           dbt deps --profiles-dir .
-            dbt run --profiles-dir .
-            dbt test --profiles-dir .
                 
       - name: Run ETL test
         run: |
