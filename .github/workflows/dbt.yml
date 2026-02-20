@@ -41,4 +41,4 @@ jobs:
           EOF    
       - name: Compile SQL
         run: |
-          dbt compile --no-profile
+          dbt compile 
