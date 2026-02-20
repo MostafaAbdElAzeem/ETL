@@ -4,7 +4,7 @@ config-version: 2
 
 profile: proj
 
-model-paths: ["models"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-macro-paths: ["macros"]
+model-paths: "models"
+analysis-paths: "analyses"
+test-paths: "tests"
+macro-paths: "macros"
