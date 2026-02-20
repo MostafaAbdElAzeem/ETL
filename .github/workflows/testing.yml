@@ -28,10 +28,6 @@ jobs:
           python -m pip install pytest
           pytest test_etl.py
       
-      - name: Run dbt
-        run: |
-            dbt run --profiles-dir dbt_project
-            dbt test --profiles-dir dbt_project    
       
       - name: Run DBT test
         run: |
