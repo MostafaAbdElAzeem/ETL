@@ -23,21 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-sqlite
 
-      - name: Create dummy DBT profile
-        run: |
-          mkdir -p ~/.dbt
-          cat <<EOF > ~/.dbt/profiles.yml
-        dummy_profile:
-        target: dev
-        outputs:
-            dev:
-            type: sqlite
-            threads: 1
-            database: ":memory:"  
-       EOF
-
       - name: Compile DBT models
-        run: dbt compile
+        run: dbt compile --profiles-dir ./   
 
       - name: Show compiled SQL
         run: cat target/compiled/etl/models/example_data.sql
