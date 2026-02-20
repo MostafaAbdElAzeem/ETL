@@ -2,8 +2,9 @@ name: proj
 version: 1.0
 config-version: 2
 
-profile: proj      # must match profiles.yml
+profile: proj
 
-source-paths: ["models"]
+model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
+macro-paths: ["macros"]
