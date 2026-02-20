@@ -1,0 +1,7 @@
+docker run 
+-e DB_HOST=host 
+-e DB_USER=user 
+-e DB_PASSWORD=pass 
+-e DB_HOST=localhost
+-e DB_PORT=5432
+python-etl
