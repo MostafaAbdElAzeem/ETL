@@ -27,7 +27,7 @@ jobs:
         run: python etl.py
 
       - name : upload uotput file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: sales_output  
           path: sales_output.csv
