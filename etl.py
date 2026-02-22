@@ -1,9 +1,8 @@
 import os
 import pandas as pd
-from sqlalchemy import create_engine
 
 def extract(csv_path=None):
-    csv_path = csv_path or os.getenv("CSV_FILE_PATH", "sales_data.csv")
+    csv_path = csv_path or "sales_data.csv"
     return pd.read_csv(csv_path)
 
 def transform(df):
@@ -13,20 +12,15 @@ def transform(df):
     df.fillna({"customer_name": "Unknown"}, inplace=True)
     return df
 
-def load(df, engine_url=None):
-    engine_url = engine_url or (
-        f"postgresql+psycopg2://{os.getenv('DB_USER','user')}:"
-        f"{os.getenv('DB_PASSWORD','password')}@"
-        f"{os.getenv('DB_HOST','localhost')}:"
-        f"{os.getenv('DB_PORT','5432')}/"
-        f"{os.getenv('DB_NAME','mydb')}"
-    )
-    engine = create_engine(engine_url)
-    df.to_sql("sales", engine, if_exists="replace", index=False)
-    return engine
+def load(df, output_path=None):
+    
+    output_path = output_path or "sales_output.csv"
+    
+    df.to_csv(output_path, index=False)
+    return output_path
 
 if __name__ == "__main__":
     data = extract()
     data = transform(data)
-    load(data)
-    print("ETL process completed successfully!")
+    output_file = load(data)
+    print(f"ETL process completed successfully! File saved to {output_file}")

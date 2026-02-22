@@ -1,8 +1,0 @@
-dummy_profile:
-  target: dev
-  outputs:
-    dev:
-      type: sqlite
-      threads: 1
-      database: ":memory:"
-      schema_directory: target/sqlite_schemas   # directory for DBT to compile ephemeral models
