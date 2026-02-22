@@ -37,8 +37,8 @@ jobs:
           sudo apt-get install -y postgresql postgresql-contrib
           sudo service postgresql start
           # Create user and DB matching etl.py defaults
-          sudo -u postgres psql -c "CREATE USER 'user' WITH PASSWORD 'password';"
-          sudo -u postgres psql -c "CREATE DATABASE mydb OWNER 'user';"    
+          sudo -u postgres psql -c "CREATE USER "user" WITH PASSWORD 'password';"
+          sudo -u postgres psql -c "  "    
       
       - name: Run python ETL script
         run: python etl_postgres.py
