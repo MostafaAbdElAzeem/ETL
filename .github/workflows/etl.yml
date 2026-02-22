@@ -58,7 +58,7 @@ jobs:
  
       - name: Install psql client
         run: 
-          apt-get update && apt-get install -y postgresql-client    
+          sudo apt-get update && sudo apt-get install -y postgresql-client    
     
       - name: Wait for Postgres to be healthy
         run: |
@@ -75,8 +75,8 @@ jobs:
       - name: Run ETL container
         run: |
           docker run --rm \
-            --network host \
-            -e DB_HOST=localhost \
+           --network ${{ job.services.postgres.network }} \
+            -e DB_HOST=postgres \
             -e DB_PORT=5432 \
             -e DB_NAME=mydb \
             -e DB_USER=user \
