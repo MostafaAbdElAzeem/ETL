@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
       
       - name: Run Etl Script
-        run: python etl.py
+        run: python etl_csv.py
 
       - name : upload uotput file
         uses: actions/upload-artifact@v6
