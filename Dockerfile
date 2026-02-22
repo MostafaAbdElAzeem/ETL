@@ -3,5 +3,5 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN chmod +x etl.py
-CMD [python,etl.py]
+RUN chmod +x etl_postgres.py
+CMD ["python","etl_postgres.py"]
