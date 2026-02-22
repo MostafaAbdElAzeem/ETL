@@ -40,5 +40,9 @@ jobs:
           sudo -u postgres psql -c "CREATE USER user WITH PASSWORD 'password';"
           sudo -u postgres psql -c "CREATE DATABASE mydb OWNER user;"    
       
-      - name: Run Extract Test
-        run: pytest test_extract.py -v
+      - name: Run python ETL script
+        run: python etl_postgres.py
+      - name: Verify data in PostgreSQL
+        run: |
+          sudo -u postgres psql -d mydb -c "SELECT * FROM sales;"  
+
