@@ -70,7 +70,8 @@ jobs:
             -e DB_USER=user \
             -e DB_PASSWORD=password \
             ${{ vars.USER }}/etl_pipeline:latest
-            # ETL runs automatically because of CMD in Dockerfile
+          
+         # ETL runs automatically because of CMD in Dockerfile
 
         - name: Verify Data
           run: |
